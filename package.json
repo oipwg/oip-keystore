@@ -1,0 +1,34 @@
+{
+  "name": "oip-keystore",
+  "version": "1.0.0",
+  "description": "Keystore for encrypted data blobs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oipwg/oip-keystore.git"
+  },
+  "keywords": [
+    "oip",
+    "oipwg",
+    "oip-keystore",
+    "keystore",
+    "oipmw",
+    "oip-wallet",
+    "wallet"
+  ],
+  "author": "Skylar Young <sky@alexandria.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oipwg/oip-keystore/issues"
+  },
+  "homepage": "https://github.com/oipwg/oip-keystore#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "lowdb": "^1.0.0",
+    "multer": "^1.3.0"
+  }
+}
