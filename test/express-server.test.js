@@ -53,7 +53,7 @@ test('Create (fail on email taken)', (done) => {
     request(app).post('/create').send({
     	"email": shared_email
     }).then((response) => {
-    	expect(response.statusCode).toBe(200);
+    	expect(response.statusCode).toBe(400);
         expect(response.body.error).toBe(true)
 		expect(response.body.type).toBe("EMAIL_ALREADY_IN_USE")
         done();
@@ -85,7 +85,7 @@ test("Test Checkload (email)", (done) => {
 
 test("Test Checkload (fail on no identifier)", (done) => {
 	request(app).post('/checkload').send().then((response) => {
-    	expect(response.statusCode).toBe(200);
+    	expect(response.statusCode).toBe(400);
     	expect(response.body.error).toBe(true)
 		expect(response.body.type).toBe("IDENTIFIER_IS_REQUIRED")
         done();
@@ -118,7 +118,7 @@ test("Test Load (email)", (done) => {
 
 test("Test Load (fail on no identifier)", (done) => {
 	request(app).post('/load').send().then((response) => {
-    	expect(response.statusCode).toBe(200);
+    	expect(response.statusCode).toBe(400);
     	expect(response.body.error).toBe(true)
 		expect(response.body.type).toBe("IDENTIFIER_IS_REQUIRED")
 		expect(response.body.encrypted_data).toBeUndefined()
@@ -157,7 +157,7 @@ test("Test Update (fail on no encrypted_data)", (done) => {
 		identifier: created_identifier,
 		shared_key: created_shared_key
 	}).then((response) => {
-    	expect(response.statusCode).toBe(200);
+    	expect(response.statusCode).toBe(400);
 		expect(response.body.error).toBe(true)
 		expect(response.body.type).toBe("NO_ENCRYPTED_DATA")
 		done()
@@ -170,7 +170,7 @@ test("Test Update (fail on invalid shared_key)", (done) => {
 		shared_key: "wrong-shared-key",
 		encrypted_data: "fake-encrypted-data"
 	}).then((response) => {
-    	expect(response.statusCode).toBe(200);
+    	expect(response.statusCode).toBe(400);
 		expect(response.body.error).toBe(true)
 		expect(response.body.type).toBe("INVALID_SHAREDKEY")
 		done()

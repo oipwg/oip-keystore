@@ -73,7 +73,12 @@ app.post('/create', upload.array(), function(req, res){
 
 	var ip = getIP(req);
 
-	res.send(account.create(ip, email))
+	var response = account.create(ip, email)
+
+	if (response.error)
+		res.status(400)
+
+	res.send(response)
 })
 
 app.post('/checkload', function(req, res){
@@ -81,7 +86,12 @@ app.post('/checkload', function(req, res){
 
 	var identifier = getIdentifier(req);
 
-	res.send(account.checkload(identifier))
+	var response = account.checkload(identifier)
+	
+	if (response.error)
+		res.status(400)
+
+	res.send(response)
 })
 
 app.post('/load', function(req, res){
@@ -89,7 +99,12 @@ app.post('/load', function(req, res){
 
 	var identifier = getIdentifier(req);
 
-	res.send(account.load(identifier))
+	var response = account.load(identifier)
+
+	if (response.error)
+		res.status(400)
+
+	res.send(response)
 })
 
 app.post('/update', upload.array(), function(req, res){
@@ -106,7 +121,12 @@ app.post('/update', upload.array(), function(req, res){
 	if (req.body && req.body.shared_key)
 		shared_key = req.body.shared_key
 
-	res.send(account.update(ip, identifier, encrypted_data, shared_key))
+	var response = account.update(ip, identifier, encrypted_data, shared_key)
+
+	if (response.error)
+		res.status(400)
+
+	res.send(response)
 })
 
 module.exports = app
