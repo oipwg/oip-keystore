@@ -1,15 +1,12 @@
 var crypto = require('crypto')
 
 module.exports =
-class Account {
-	constructor(db, req) {
+class AccountProcessor {
+	constructor(db) {
 		this.db_ = db;
-		this.req_ = req;
 	}
 
-	create(){
-		var email = ('email' in this.req_.body) ? this.req_.body.email : null;
-
+	create(ip_address, email){
 		if (email) {
 			var match = this.db_.get('accounts')
 				.find({ email: email })
@@ -28,11 +25,11 @@ class Account {
 			shared_key: crypto.randomBytes(48).toString('hex'),
 			wallet_data: "",
 			created_at: this.getNow(),
-			created_ip_address: this.getIP(),
+			created_ip_address: ip_address,
 			email: email
 		}
 
-		this.save();
+		this.save(ip_address);
 
 		return {
 			identifier: this.data.identifier,
@@ -41,8 +38,8 @@ class Account {
 		}
 	}
 
-	checkload(){
-		var account = this.getAccount();
+	checkload(identifier){
+		var account = this.getAccount(identifier);
 
 		if (!account){
 			return {
@@ -60,8 +57,8 @@ class Account {
 		}
 	}
 
-	load(){
-		var account = this.getAccount();
+	load(identifier){
+		var account = this.getAccount(identifier);
 
 		// If the error message is set, return the error
 		if (account.error){
@@ -70,12 +67,12 @@ class Account {
 
 		return {
 			error: false,
-			wallet: account.wallet_data
+			encrypted_data: account.encrypted_data
 		}
 	}
 
-	readaccount(){
-		var account = this.getAccount();
+	readaccount(identifier){
+		var account = this.getAccount(identifier);
 
 		// If the error message is set, return the error
 		if (account.error){
@@ -90,8 +87,8 @@ class Account {
 		}
 	}
 
-	update(){
-		var account = this.getAccount();
+	update(ip_address, identifier, encrypted_data){
+		var account = this.getAccount(identifier);
 
 		// If the error message is set, return the error
 		if (account.error){
@@ -100,18 +97,17 @@ class Account {
 
 		this.data = account;
 
-		var wallet_data = ("wallet_data" in this.req_.body) ? this.req_.body.wallet_data : undefined;
-
-		if (!wallet_data){
+		if (!encrypted_data){
 			return {
 				error: true,
-				message: "(wallet_data) not supplied!"
+				type: "NO_ENCRYPTED_DATA",
+				message: "encrypted_data not supplied! Cannot save!"
 			}
 		}
 
-		this.data.wallet_data = wallet_data;
+		this.data.encrypted_data = encrypted_data;
 
-		var save = this.save();
+		var save = this.save(ip_address);
 
 		if (save.error){
 			return save
@@ -123,14 +119,8 @@ class Account {
 		}
 	}
 
-	getAccount(){
+	getAccount(identifier){
 		var identifier;
-
-		if (this.req_.body && this.req_.body.identifier)
-			identifier = this.req_.body.identifier
-
-		if (!identifier && this.req_.params && this.req_.params.identifier)
-			identifier = this.req_.params.identifier
 
 		var matchID = this.db_.get('accounts')
 			.find({ identifier: identifier })
@@ -156,9 +146,9 @@ class Account {
 		}
 	}
 
-	save(){
+	save(ip_address){
 		this.data.last_update = this.getNow();
-		this.data.last_ip_address = this.getIP()
+		this.data.last_ip_address = ip_address;
 
 		// Check if the account exists
 		var exists = this.db_.get('accounts')
@@ -194,10 +184,6 @@ class Account {
 		var bytes = crypto.randomBytes(16).toString('hex');
 
 		return bytes.slice(0, 7) + "-" + bytes.slice(8, 16) + "-" + bytes.slice(17, 24) + "-" + bytes.slice(25, 32);
-	}
-
-	getIP(){
-		return this.req_.headers['x-forwarded-for'] || this.req_.connection.remoteAddress
 	}
 
 	getNow(){

@@ -58,3 +58,4 @@ typings/
 .env
 
 db.json
+.DS_Store

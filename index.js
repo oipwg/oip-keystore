@@ -9,7 +9,7 @@ const low = require('lowdb')
 // FileSync will provide us with a way to save our db to a file
 const FileSync = require('lowdb/adapters/FileSync')
 
-var Account = require("./Account.js");
+var AccountProcessor = require("./AccountProcessor.js");
 var config = require('./config.js');
 
 // Here we setup the db file
@@ -19,6 +19,23 @@ const db = low(adapter);
 
 // Setup database defaults
 db.defaults({ accounts: [] }).write();
+
+
+var getIdentifier = function(req){
+	var identifier;
+
+	if (req.body && req.body.identifier)
+		identifier = req.body.identifier
+
+	if (!identifier && req.params && req.params.identifier)
+		identifier = req.params.identifier
+
+	return identifier
+}
+
+var getIP = function(req){
+	return req.headers['x-forwarded-for'] || req.connection.remoteAddress
+}
 
 // Start up the "app" (webserver)
 var app = express()
@@ -47,33 +64,53 @@ app.get('/', function(req, res){
 })
 
 app.post('/create', upload.array(), function(req, res){
-	var account = new Account(db, req);
+	var account = new AccountProcessor(db);
 
-	res.send(account.create())
+	var email;
+
+	if (req.body && req.body.email)
+		email = req.body.email
+
+	var ip = getIP(req);
+
+	res.send(account.create(ip, email))
 })
 
 app.get('/checkload/:identifier', function(req, res){
-	var account = new Account(db, req);
+	var account = new AccountProcessor(db);
 
-	res.send(account.checkload())
+	var identifier = getIdentifier(req);
+
+	res.send(account.checkload(identifier))
 })
 
 app.get('/load/:identifier', function(req, res){
-	var account = new Account(db, req);
+	var account = new AccountProcessor(db);
 
-	res.send(account.load())
+	var identifier = getIdentifier(req);
+
+	res.send(account.load(identifier))
 })
 
 app.post('/read_account', upload.array(), function(req, res){
-	var account = new Account(db, req);
+	var account = new AccountProcessor(db);
 
-	res.send(account.readaccount())
+	var identifier = getIdentifier(req);
+
+	res.send(account.readaccount(identifier))
 })
 
 app.post('/update', upload.array(), function(req, res){
-	var account = new Account(db, req);
+	var account = new AccountProcessor(db);
 
-	res.send(account.update())
+	var identifier = getIdentifier(req);
+	var ip = getIP(req);
+	var encrypted_data
+
+	if (req.body && req.body.encrypted_data)
+		encrypted_data = req.body.encrypted_data
+
+	res.send(account.update(ip, identifier, encrypted_data))
 })
 
 app.listen(config.port, function(){

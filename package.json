@@ -1,7 +1,7 @@
 {
   "name": "oip-keystore",
-  "version": "1.0.0",
-  "description": "Keystore for encrypted data blobs",
+  "version": "2.0.0",
+  "description": "Keystore for encrypted data blobs, used by OIP-Account",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
