@@ -10,7 +10,6 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
 var AccountProcessor = require("./AccountProcessor.js");
-var config = require('../config.js');
 
 // Here we setup the db file
 const adapter = new FileSync('db.json')
@@ -87,7 +86,7 @@ app.post('/checkload', function(req, res){
 	var identifier = getIdentifier(req);
 
 	var response = account.checkload(identifier)
-	
+
 	if (response.error)
 		res.status(400)
 
