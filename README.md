@@ -57,8 +57,11 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 ### Status
 
 **Description**: Get the current status of the OIP-Keystore server
+
 **URL :** `/`
+
 **Method :** `GET`
+
 **Response:**
 
  - Success (200):  `{status: "online"}`
@@ -66,7 +69,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 ### Create
 
 **Description**: Check if a specific Identifier or Email exists on the server
+
 **URL :** `/create`
+
 **Method :** `POST`
 
 **Data Params:** 
@@ -105,7 +110,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 ### Check Load
 
 **Description**: Check if a specific Identifier or Email exists on the server
+
 **URL :** `/checkload`
+
 **Method :** `POST`
 
 **Data Params:** 
@@ -147,7 +154,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 ### Load
 
 **Description**: Check if a specific Identifier or Email exists on the server
+
 **URL :** `/load`
+
 **Method :** `POST`
 
 **Data Params:** 
@@ -185,7 +194,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 ### Update
 
 **Description**: Check if a specific Identifier or Email exists on the server
+
 **URL :** `/update`
+
 **Method :** `POST`
 
 **Data Params:** 
