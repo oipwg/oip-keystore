@@ -83,24 +83,24 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - Success (200):  
 
-- ```json
-  {
-      "error": false,
-      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
-      "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
-      "email": "email@example.com"
-  }
-  ```
+```json
+{
+    "error": false,
+    "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+    "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
+    "email": "email@example.com"
+}
+```
 
 - Error (400):
 
-  ```json
-  {
-      "error": true,
-      "type": "ERROR_TYPE",
-      "message": "More information about the error"
-  }
-  ```
+```json
+{
+	"error": true,
+	"type": "ERROR_TYPE",
+	"message": "More information about the error"
+}
+```
 
 ### Check Load
 
@@ -122,27 +122,27 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - Success (200):  
 
-- ```json
-  {
-      "error": false,
-      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
-      "gauth_enabled": false,
-      "encryption_settings": {
-          "algo": "aes",
-          "iterations": 5
-      }
-  }
-  ```
+```json
+{
+	"error": false,
+	"identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+	"gauth_enabled": false,
+	"encryption_settings": {
+		"algo": "aes",
+		"iterations": 5
+	}
+}
+```
 
 - Error (400):
 
-  ```json
-  {
-      "error": true,
-      "type": "ERROR_TYPE",
-      "message": "More information about the error"
-  }
-  ```
+```json
+{
+	"error": true,
+	"type": "ERROR_TYPE",
+	"message": "More information about the error"
+}
+```
 
 ### Load
 
@@ -164,64 +164,64 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - Success (200):  
 
-- ```json
-  {
-      "error": false,
-      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
-      "encrypted_data": "encrypted-data-string"
-  }
+```json
+{
+	"error": false,
+	"identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+	"encrypted_data": "encrypted-data-string"
+}
   ```
 
 - Error (400):
 
-  ```json
-  {
-      "error": true,
-      "type": "ERROR_TYPE",
-      "message": "More information about the error"
-  }
-  ```
+```json
+{
+	"error": true,
+	"type": "ERROR_TYPE",
+	"message": "More information about the error"
+}
+```
 
-  ### Update
+### Update
 
-  **Description**: Check if a specific Identifier or Email exists on the server
-  **URL :** `/update`
-  **Method :** `POST`
+**Description**: Check if a specific Identifier or Email exists on the server
+**URL :** `/update`
+**Method :** `POST`
 
-  **Data Params:** 
+**Data Params:** 
 
-  - `identifier`: Should be either the users email, or the identifier generated in `/create`
-  - `shared_key`: The key generated in `/create` that should be inside the decrypted version of the encrypted_data.
-  - `encrypted_data`: The Encrypted data you wish to save to the keystore server
+- `identifier`: Should be either the users email, or the identifier generated in `/create`
+- `shared_key`: The key generated in `/create` that should be inside the decrypted version of the encrypted_data.
+- `encrypted_data`: The Encrypted data you wish to save to the keystore server
 
-  ```json
-  { 
-      "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3",
-      "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
-      "encrypted_data": "new-encrypted-data-string"
-  }
-  ```
+```javascript
+{ 
+	  "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3",
+	  "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
+	  "encrypted_data": "new-encrypted-data-string"
+}
+```
 
-  **Response:**
+**Response:**
 
-  - Success (200):  
+- Success (200):  
 
-  - ```json
-    {
-        "error": false,
-        "identifier": "47cfbad-5f331638-6575c0a-d1d14e3"
-    }
-    ```
+```json
+{
+	"error": false,
+	"identifier": "47cfbad-5f331638-6575c0a-d1d14e3"
+}
+```
 
-  - Error (400):
+- Error (400):
 
-    ```json
-    {
-        "error": true,
-        "type": "ERROR_TYPE",
-        "message": "More information about the error"
-    }
-    ```
+```json
+{
+	"error": true,
+	"type": "ERROR_TYPE",
+	"message": "More information about the error"
+}
+```
 
 ## License
 MIT License
