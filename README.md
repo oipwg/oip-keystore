@@ -40,7 +40,7 @@ After the `npm install` finishes, you can continue onto the [Getting Started]() 
 To run your keystore server, `cd` into the directory you cloned it, and then start it using the following command.
 
 ```bash
-$ node src/index.js
+$ node src/server.js
 ```
 
 After you run that command you should see it print out that it is running the server
