@@ -1,4 +1,5 @@
 [![](https://travis-ci.org/oipwg/oip-keystore.svg?branch=master)](https://travis-ci.org/oipwg/oip-keystore)
+[![](https://img.shields.io/npm/v/oip-keystore.svg)](https://www.npmjs.com/package/oip-keystore)
 # OIP Keystore
 
 OIP Keystore is a simple encrypted keystore server. By sharing a "shared_key" it will update the stored encrypted data.
