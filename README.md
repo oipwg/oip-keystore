@@ -4,17 +4,17 @@ OIP-Keystore is a simple encrypted keystore server. By sharing a "shared_key" it
 
 ## Table of Contents
 
-- [Installation Instructions]()
-- [Getting Started]()
-  - [Running an OIP-Keystore server]()
-  - [Running on a different port]()
-- [API Methods]()
-  - [Status]()
-  - [Create]()
-  - [Checkload]()
-  - [Load]()
-  - [Update]()
-- [License]()
+- [Installation Instructions](https://github.com/oipwg/oip-keystore#installation-instructions)
+- [Getting Started](https://github.com/oipwg/oip-keystore#getting-started)
+  - [Running an OIP-Keystore server](https://github.com/oipwg/oip-keystore#running-an-oip-keystore-server)
+  - [Running on a different port](https://github.com/oipwg/oip-keystore#running-on-a-different-port)
+- [API Methods](https://github.com/oipwg/oip-keystore#api-methods)
+  - [Status](https://github.com/oipwg/oip-keystore#status)
+  - [Create](https://github.com/oipwg/oip-keystore#create)
+  - [Checkload](https://github.com/oipwg/oip-keystore#check-load)
+  - [Load](https://github.com/oipwg/oip-keystore#load)
+  - [Update](https://github.com/oipwg/oip-keystore#update)
+- [License](https://github.com/oipwg/oip-keystore#license)
 
 ## Installation Instructions
 
@@ -75,7 +75,7 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 ```json
 { 
-    email: "email@example.com"
+    "email": "email@example.com"
 }
 ```
 
@@ -85,10 +85,10 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - ```json
   {
-      error: false,
-      identifier: "47cfbad-5f331638-6575c0a-d1d14e3",
-      shared_key: "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
-      email: "email@example.com"
+      "error": false,
+      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+      "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
+      "email": "email@example.com"
   }
   ```
 
@@ -96,9 +96,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
   ```json
   {
-      error: true,
-      type: "ERROR_TYPE",
-      message: "More information about the error"
+      "error": true,
+      "type": "ERROR_TYPE",
+      "message": "More information about the error"
   }
   ```
 
@@ -114,7 +114,7 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 ```json
 { 
-    identifier: "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
+    "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
 }
 ```
 
@@ -124,12 +124,12 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - ```json
   {
-      error: false,
-      identifier: "47cfbad-5f331638-6575c0a-d1d14e3",
-      gauth_enabled: false,
-      encryption_settings: {
-          algo: "aes",
-          iterations: 5
+      "error": false,
+      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+      "gauth_enabled": false,
+      "encryption_settings": {
+          "algo": "aes",
+          "iterations": 5
       }
   }
   ```
@@ -138,9 +138,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
   ```json
   {
-      error: true,
-      type: "ERROR_TYPE",
-      message: "More information about the error"
+      "error": true,
+      "type": "ERROR_TYPE",
+      "message": "More information about the error"
   }
   ```
 
@@ -156,7 +156,7 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 ```json
 { 
-    identifier: "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
+    "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
 }
 ```
 
@@ -166,9 +166,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - ```json
   {
-      error: false,
-      identifier: "47cfbad-5f331638-6575c0a-d1d14e3",
-      encrypted_data: "encrypted-data-string"
+      "error": false,
+      "identifier": "47cfbad-5f331638-6575c0a-d1d14e3",
+      "encrypted_data": "encrypted-data-string"
   }
   ```
 
@@ -176,9 +176,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
   ```json
   {
-      error: true,
-      type: "ERROR_TYPE",
-      message: "More information about the error"
+      "error": true,
+      "type": "ERROR_TYPE",
+      "message": "More information about the error"
   }
   ```
 
@@ -196,9 +196,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
   ```json
   { 
-      identifier: "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3",
-      shared_key: "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
-      encrypted_data: "new-encrypted-data-string"
+      "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3",
+      "shared_key": "e712c556495c3918d9ddd0b80ac376ef30b0a55230fb26e3d24d8ef73d2604f712baeb8b4bb2f6e3dd14821c47cd3076",
+      "encrypted_data": "new-encrypted-data-string"
   }
   ```
 
@@ -208,8 +208,8 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
   - ```json
     {
-        error: false,
-        identifier: "47cfbad-5f331638-6575c0a-d1d14e3"
+        "error": false,
+        "identifier": "47cfbad-5f331638-6575c0a-d1d14e3"
     }
     ```
 
@@ -217,9 +217,9 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
     ```json
     {
-        error: true,
-        type: "ERROR_TYPE",
-        message: "More information about the error"
+        "error": true,
+        "type": "ERROR_TYPE",
+        "message": "More information about the error"
     }
     ```
 
