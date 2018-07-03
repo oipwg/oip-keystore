@@ -112,7 +112,7 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - `identifier`: Should be either the users email, or the identifier generated in `/create`
 
-```json
+```javascript
 { 
     "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
 }
@@ -154,7 +154,7 @@ To run the OIP-Keystore server on a different port, edit the `config.js` file in
 
 - `identifier`: Should be either the users email, or the identifier generated in `/create`
 
-```json
+```javascript
 { 
     "identifier": "email@example.com" || "47cfbad-5f331638-6575c0a-d1d14e3"
 }
