@@ -35,7 +35,12 @@ class AccountProcessor {
 			email: email
 		}
 
-		return this.save(ip_address)
+		var response = this.save(ip_address)
+
+		response.shared_key = this.data.shared_key
+		response.email = this.data.email
+
+		return response
 	}
 
 	checkload(identifier){
@@ -141,9 +146,7 @@ class AccountProcessor {
 
 				return {
 					error: false,
-					identifier: this.data.identifier,
-					shared_key: this.data.shared_key,
-					email: this.data.email
+					identifier: this.data.identifier
 				}
 
 			} else {
@@ -158,9 +161,7 @@ class AccountProcessor {
 			
 			return {
 				error: false,
-				identifier: this.data.identifier,
-				shared_key: this.data.shared_key,
-				email: this.data.email
+				identifier: this.data.identifier
 			}
 		}
 	}
