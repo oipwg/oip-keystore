@@ -10,7 +10,7 @@ const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
 var AccountProcessor = require("./AccountProcessor.js");
-var config = require('./config.js');
+var config = require('../config.js');
 
 // Here we setup the db file
 const adapter = new FileSync('db.json')
@@ -92,25 +92,21 @@ app.get('/load/:identifier', function(req, res){
 	res.send(account.load(identifier))
 })
 
-app.post('/read_account', upload.array(), function(req, res){
-	var account = new AccountProcessor(db);
-
-	var identifier = getIdentifier(req);
-
-	res.send(account.readaccount(identifier))
-})
-
 app.post('/update', upload.array(), function(req, res){
 	var account = new AccountProcessor(db);
 
 	var identifier = getIdentifier(req);
 	var ip = getIP(req);
 	var encrypted_data
+	var shared_key
 
 	if (req.body && req.body.encrypted_data)
 		encrypted_data = req.body.encrypted_data
 
-	res.send(account.update(ip, identifier, encrypted_data))
+	if (req.body && req.body.shared_key)
+		shared_key = req.body.shared_key
+
+	res.send(account.update(ip, identifier, encrypted_data, shared_key))
 })
 
 app.listen(config.port, function(){
