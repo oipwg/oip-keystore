@@ -12,7 +12,7 @@ OIP Keystore is a simple encrypted keystore server. By sharing a "shared_key" it
 - [Getting Started](https://github.com/oipwg/oip-keystore#getting-started)
   - [Running an OIP-Keystore server](https://github.com/oipwg/oip-keystore#running-an-oip-keystore-server)
   - [Running on a different port](https://github.com/oipwg/oip-keystore#running-on-a-different-port)
-  - [Using OIP Keystore Programmatically](ttps://github.com/oipwg/oip-keystore#using-oip-keystore-programmatically)
+  - [Using OIP Keystore Programmatically](https://github.com/oipwg/oip-keystore#using-oip-keystore-programmatically)
 - [API Methods](https://github.com/oipwg/oip-keystore#api-methods)
   - [Status](https://github.com/oipwg/oip-keystore#status)
   - [Create](https://github.com/oipwg/oip-keystore#create)
