@@ -7,9 +7,12 @@ OIP Keystore is a simple encrypted keystore server. By sharing a "shared_key" it
 ## Table of Contents
 
 - [Installation Instructions](https://github.com/oipwg/oip-keystore#installation-instructions)
+  - [Install Locally](https://github.com/oipwg/oip-keystore#install-locally)
+  - [Install Programmatically](https://github.com/oipwg/oip-keystore#install-programmatically)
 - [Getting Started](https://github.com/oipwg/oip-keystore#getting-started)
   - [Running an OIP-Keystore server](https://github.com/oipwg/oip-keystore#running-an-oip-keystore-server)
   - [Running on a different port](https://github.com/oipwg/oip-keystore#running-on-a-different-port)
+  - [Using OIP Keystore Programmatically](ttps://github.com/oipwg/oip-keystore#using-oip-keystore-programmatically)
 - [API Methods](https://github.com/oipwg/oip-keystore#api-methods)
   - [Status](https://github.com/oipwg/oip-keystore#status)
   - [Create](https://github.com/oipwg/oip-keystore#create)
@@ -19,6 +22,10 @@ OIP Keystore is a simple encrypted keystore server. By sharing a "shared_key" it
 - [License](https://github.com/oipwg/oip-keystore#license)
 
 ## Installation Instructions
+
+There are two different ways to install and run an OIP Keystore server. You can either use it programmatically, or clone it to run a server without including it in your own code.
+
+### Install Locally
 
 To install on your server, clone this repo into a local folder.
 
@@ -32,11 +39,20 @@ After you have cloned it, `cd` into the directory you installed it into and run
 $ npm install
 ```
 
-After the `npm install` finishes, you can continue onto the [Getting Started]() section.
+After the `npm install` finishes, you can continue onto the [Running an OIP Keystore server](https://github.com/oipwg/oip-keystore#running-an-oip-keystore-server) section under Getting Started.
+
+### Install Programmatically
+
+To spawn an OIP Keystore server inside of your own app, first install the module via NPM.
+```bash
+$ npm install oip-keystore --save
+```
+
+After you have installed it, continue on to [Using OIP Keystore Programmatically](https://github.com/oipwg/oip-keystore#using-oip-keystore-programmatically)
 
 ## Getting Started
 
-### Running an OIP-Keystore server
+### Running an OIP Keystore server
 
 To run your keystore server, `cd` into the directory you cloned it, and then start it using the following command.
 
@@ -52,9 +68,36 @@ Listening on http://127.0.0.1:9196
 
 ### Running on a different port
 
-To run the OIP-Keystore server on a different port, edit the `config.js` file inside of your cloned `oip-keystore` folder.
+To run the OIP Keystore server on a different port, edit the `config.js` file inside of your cloned `oip-keystore` folder.
+
+### Using OIP Keystore Programmatically
+
+To run an OIP Keystore server inside of your app, first make sure you have installed `oip-keystore` via npm/yarn.
+
+After making sure it is installed, you can import it and startup the server using the following code.
+
+```javascript
+import Keystore from `oip-keystore`
+
+var port = 9196
+
+var startupCallback = function(){
+	console.log("Server started on port: " + port)
+}
+
+var server = Keystore.listen(port, startupCallback)
+```
+
+After you have run that code, it should startup an OIP Keystore server on your selected port.
+
+To close/kill the server programmatically, you can reference the return value of `Keystore.listen(port, startupCallback)` (in the example above, this would be the server variable) and run the `.close()` function to shutdown the server.
+
+```javascript
+server.close()
+```
 
 ## API Methods
+There are several API Methods available after you are running the OIP Keystore server. Read through each to understand fully what it does.
 
 ### Status
 
